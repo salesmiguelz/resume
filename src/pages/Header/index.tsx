@@ -1,10 +1,13 @@
 import { Code } from "phosphor-react";
-import { HeaderContainer } from "./styles";
+import { HeaderContainer, HeaderLogoContainer, HeaderTitle } from "./styles";
 
 export function Header() {
     return (
         <HeaderContainer>
-            <Code size={32} />
+            <HeaderLogoContainer>
+                <Code size={32} weight="light" />
+            </HeaderLogoContainer>
+            <HeaderTitle>PROJETOS GITHUB</HeaderTitle>
         </HeaderContainer>
     )
 }
