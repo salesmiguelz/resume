@@ -7,10 +7,10 @@ export const SearchFormContainer = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin: 12rem auto;
+    margin: 12rem auto 4rem;
 
     @media (max-width: 768px) {
-        margin: 28rem auto;
+        margin: 30rem auto 4rem;
     }
 `
 
@@ -31,7 +31,7 @@ export const SearchFormData = styled.p`
 `
 
 export const SearchFormInput = styled.input`
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     width: 100%;
 
     color: ${props => props.theme['base-label']};
