@@ -8,13 +8,15 @@ export const HeaderContainer = styled.div`
     background-image: url('./src/assets/header-cover.svg');
     background-position: center;
     background-size: cover;
-    height: 296px;
-
+    height: 18rem;
     padding: 12px 0px;
 `
 
 export const HeaderLogoContainer = styled.div`
     color: ${props => props.theme['blue']};
+     @media (max-width: 768px) {
+        margin-top: 12rem;
+    }
 `
 
 export const HeaderTitle = styled.p`

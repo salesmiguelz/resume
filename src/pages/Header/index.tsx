@@ -1,5 +1,6 @@
 import { Code } from "phosphor-react";
 import { HeaderContainer, HeaderLogoContainer, HeaderTitle } from "./styles";
+import { Profile } from "./components/Profile";
 
 export function Header() {
     return (
@@ -7,7 +8,8 @@ export function Header() {
             <HeaderLogoContainer>
                 <Code size={32} weight="light" />
             </HeaderLogoContainer>
-            <HeaderTitle>PROJETOS GITHUB</HeaderTitle>
+            <HeaderTitle>salesmiguelz</HeaderTitle>
+            <Profile />
         </HeaderContainer>
     )
 }
