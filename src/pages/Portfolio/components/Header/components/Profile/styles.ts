@@ -33,7 +33,9 @@ export const ProfileDetails = styled.div`
     padding: 1rem 2rem;
 
     @media (max-width: 768px) {
-        margin-top: 2cqw;
+        width: 100%;
+        padding: 0 1rem;
+        margin-top: 2rem;
     }
     
 `
@@ -65,6 +67,8 @@ export const ProfileSocial = styled.div`
     gap: 2rem;
      @media (max-width: 768px) {
         margin-top: 2rem;
+        flex-direction: column;
+        gap: 1.5rem;
     }
 
 `

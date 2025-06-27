@@ -15,7 +15,7 @@ export const HeaderContainer = styled.div`
 export const HeaderLogoContainer = styled.div`
     color: ${props => props.theme['blue']};
      @media (max-width: 768px) {
-        margin-top: 12rem;
+        margin-top: 16rem;
     }
 `
 

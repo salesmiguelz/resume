@@ -4,12 +4,10 @@ export function SearchForm() {
     return (
         <SearchFormContainer>
             <SearchFormText>
-                <SearchFormTitle>Pulicações</SearchFormTitle>
-                <SearchFormData>Pulicações</SearchFormData>
+                <SearchFormTitle>Projetos</SearchFormTitle>
+                <SearchFormData>6 projetos</SearchFormData>
             </SearchFormText>
-            <SearchFormInput>
-
-            </SearchFormInput>
+            <SearchFormInput placeholder="Busque um projeto" />
         </SearchFormContainer>
     )
 }
