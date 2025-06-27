@@ -1,7 +1,7 @@
 import { ProfileContainer, ProfileDescription, ProfileDetails, ProfileHeader, ProfileIcon, ProfileImage, ProfileSocial, ProfileTitle } from "./styles";
-import Perfil from "../../../../assets/perfil.jpg"
+import Perfil from "../../../../../../assets/perfil.jpg"
 import { Buildings, GithubLogo, Users } from "phosphor-react";
-import { Link } from '../../../../components/Link'
+import { Link } from "../../../../../../components/Link";
 
 export function Profile() {
     return (
