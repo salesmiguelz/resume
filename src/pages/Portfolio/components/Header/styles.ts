@@ -5,7 +5,7 @@ export const HeaderContainer = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-image: url('./src/assets/header-cover.svg');
+    background-image: url('/header-cover.svg');
     background-position: center;
     background-size: cover;
     height: 18rem;
