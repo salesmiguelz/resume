@@ -56,6 +56,8 @@ export const ProfileDescription = styled.h1`
     color: ${props => props.theme['base-text']};
     font-size: ${props => props.theme['text-sm']};
     font-weight: normal;
+    min-height: 2rem;
+    min-width: 30rem;
 `
 
 

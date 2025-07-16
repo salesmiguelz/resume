@@ -1,19 +1,28 @@
 import { Tag } from "../Tag";
 import { CardContainer, CardDate, CardDescription, CardHeader, CardTitle, CardTags } from "./styles";
 
-export function Card() {
+interface CardProps {
+    title: string,
+    date: string,
+    tags: string[],
+    description: string
+}
+
+export function Card({ title, date, tags, description }: CardProps) {
     return (
         <CardContainer>
             <CardHeader>
-                <CardTitle>JavaScript data types and data structures</CardTitle>
-                <CardDate>Há 1 dia</CardDate>
+                <CardTitle>{title}</CardTitle>
+                <CardDate>{new Intl.DateTimeFormat("pt-BR").format(new Date(date))}</CardDate>
             </CardHeader>
             <CardTags>
-                <Tag />
-                <Tag />
-                <Tag />
+                {
+                    tags.map(tag => (
+                        <Tag key={tag} name={tag} />
+                    ))
+                }
             </CardTags>
-            <CardDescription>Programming languages all have built-in data structures, but these often differ from one language to another.
+            <CardDescription>{description}
             </CardDescription>
         </CardContainer>
     )

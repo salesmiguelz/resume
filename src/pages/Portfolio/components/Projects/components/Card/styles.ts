@@ -17,6 +17,7 @@ export const CardContainer = styled.div`
 export const CardHeader = styled.div`
     display: flex;
     align-items: flex-start;
+    justify-content: space-between;
 `
 
 export const CardTags = styled.div`

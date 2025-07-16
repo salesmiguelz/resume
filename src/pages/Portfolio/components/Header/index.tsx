@@ -5,14 +5,13 @@ import { UserContext } from "../../../../contexts/UserContext";
 import { useContext } from "react";
 
 export function Header() {
-    const { user } = useContext(UserContext);
-    console.log("user no header", user)
+    const { userData } = useContext(UserContext)
     return (
         <HeaderContainer>
             <HeaderLogoContainer>
                 <Code size={32} weight="light" />
             </HeaderLogoContainer>
-            <HeaderTitle>salesmiguelz</HeaderTitle>
+            <HeaderTitle>{userData.user.login}</HeaderTitle>
             <Profile />
         </HeaderContainer>
     )

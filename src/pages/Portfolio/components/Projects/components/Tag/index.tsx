@@ -1,10 +1,14 @@
 import { TagColor, TagContainer, TagLabel } from "./styles";
 
-export function Tag() {
+interface TagProps {
+    name: string
+}
+
+export function Tag({ name }: TagProps) {
     return (
         <TagContainer>
             <TagColor />
-            <TagLabel>JavaScript</TagLabel>
+            <TagLabel>{name}</TagLabel>
         </TagContainer>
     )
 }

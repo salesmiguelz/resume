@@ -5,7 +5,7 @@ import { UserContextProvider } from "./contexts/UserContext";
 export function Router() {
     return (
         <Routes>
-            <Route path="/portfolio/:user" element={
+            <Route path="/users/:username" element={
                 <UserContextProvider >
                     <Portfolio />
                 </UserContextProvider>
