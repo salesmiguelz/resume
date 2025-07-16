@@ -5,10 +5,11 @@ export const LinkContainer = styled.div`
     display: flex;
     gap: 0.2rem;
     cursor: pointer;
-
-
-    p{
+    a{
         font-size: ${props => props.theme['text-xs']};
+
+        color: ${props => props.theme['blue']};
+        text-decoration: none;
     }
 
     &:hover{

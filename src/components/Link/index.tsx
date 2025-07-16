@@ -2,14 +2,15 @@ import { ArrowSquareOut } from "phosphor-react";
 import { LinkContainer } from "./styles";
 
 interface LinkProps {
-    label: string
+    label: string,
+    url: string
 }
 
-export function Link({ label }: LinkProps) {
+export function Link({ label, url }: LinkProps) {
     return (
         <LinkContainer>
             <ArrowSquareOut />
-            <p>{label}</p>
+            <a href={url} target="_blank">{label}</a>
         </LinkContainer>
     )
 }
