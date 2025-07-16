@@ -11,10 +11,13 @@ export function Projects() {
                 Array.isArray(userData.repos) ? (
                     userData.repos.map(repo => (
                         <Card
+                            key={repo.repo}
                             title={repo.repo}
                             description={repo.description}
-                            date={String(new Date(repo.createdAt))}
-                            tags={repo.mainTechs}
+                            createdAt={new Date(repo.createdAt)}
+                            updatedAt={new Date(repo.updatedAt)}
+                            techs={repo.mainTechs}
+                            languages={repo.languages}
                         />
                     ))
                 ) : null

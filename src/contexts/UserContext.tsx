@@ -23,14 +23,18 @@ interface UserFetchData {
         name: string,
         public_repo: string
     },
-    repos: {
-        allDeps: string[],
-        description?: string,
-        languages: string[],
-        mainTechs: string[],
-        repo: string,
-        source: string
-    }
+    repos: [
+        {
+            allDeps: string[],
+            description?: string,
+            languages: string[],
+            mainTechs: string[],
+            repo: string,
+            source: string,
+            createdAt: string,
+            updatedAt: string
+        }
+    ]
 }
 
 export const UserContext = createContext({} as UserContextType);
@@ -59,14 +63,18 @@ export function UserContextProvider({ children }: UserContextProviderProps) {
             name: "",
             public_repo: ""
         },
-        repos: {
-            allDeps: [],
-            description: "",
-            languages: [],
-            mainTechs: [],
-            repo: "",
-            source: ""
-        }
+        repos: [
+            {
+                allDeps: [],
+                description: "",
+                languages: [],
+                mainTechs: [],
+                repo: "",
+                source: "",
+                updatedAt: "",
+                createdAt: ""
+            }
+        ]
     });
 
     useEffect(() => {

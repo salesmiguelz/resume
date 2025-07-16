@@ -1,21 +1,24 @@
 import styled from "styled-components";
 
+interface TagColorProps {
+    variant: 'blue' | 'red'
+}
+
 export const TagContainer = styled.div`
     margin-top: 1rem;
     display: flex;
-    align-items: center;
+    background-color: red;
     gap: 0.5rem;
     background-color: ${props => props.theme['base-input']};
-    width: 30%;
-    padding: 0.2rem ;
+    max-width: 12rem;
+    padding: 0.2rem 0.5rem;
     border-radius: 0.625rem;
-    flex: 1;
 `
 
-export const TagColor = styled.span`
-    width: 1rem;
+export const TagColor = styled.span<TagColorProps>`
     height: 1rem;
-    background-color: red;
+    width: 1rem;
+    background-color: ${props => props.variant === 'blue' ? props.theme['blue'] : 'red'};
     border-radius: 50%;
 `
 

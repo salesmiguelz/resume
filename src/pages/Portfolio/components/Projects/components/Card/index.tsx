@@ -1,29 +1,49 @@
+import { formatDate, formatDistanceToNow } from "date-fns";
 import { Tag } from "../Tag";
-import { CardContainer, CardDate, CardDescription, CardHeader, CardTitle, CardTags } from "./styles";
+import { CardContainer, CardDate, CardDescription, CardHeader, CardTitle, CardTags, CardUpdatedAt } from "./styles";
+import { ptBR } from "date-fns/locale";
 
 interface CardProps {
     title: string,
-    date: string,
-    tags: string[],
-    description: string
+    createdAt: Date,
+    updatedAt: Date,
+    techs: string[],
+    languages: string[],
+    description?: string
 }
 
-export function Card({ title, date, tags, description }: CardProps) {
+export function Card({ title, createdAt, updatedAt, techs, languages, description }: CardProps) {
+    const formattedCreatedAtDate = formatDate(createdAt, 'PPP', {
+        locale: ptBR
+    })
+    const formattedUpdatedAtDate = formatDistanceToNow(updatedAt, {
+        addSuffix: true,
+        locale: ptBR
+    })
+
     return (
         <CardContainer>
             <CardHeader>
                 <CardTitle>{title}</CardTitle>
-                <CardDate>{new Intl.DateTimeFormat("pt-BR").format(new Date(date))}</CardDate>
+                <CardDate>{formattedCreatedAtDate}</CardDate>
             </CardHeader>
             <CardTags>
                 {
-                    tags.map(tag => (
-                        <Tag key={tag} name={tag} />
+                    techs.slice(0, 3).map(tech => (
+                        <Tag key={tech} name={tech} variant="blue" />
                     ))
                 }
             </CardTags>
-            <CardDescription>{description}
-            </CardDescription>
+
+            <CardTags>
+                {
+                    languages.slice(0, 3).map(language => (
+                        <Tag key={language} name={language} variant="red" />
+                    ))
+                }
+            </CardTags>
+            <CardDescription>{description}</CardDescription>
+            <CardUpdatedAt>Última atualização {formattedUpdatedAtDate}</CardUpdatedAt>
         </CardContainer>
     )
 }
