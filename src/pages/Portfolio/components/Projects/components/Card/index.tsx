@@ -5,8 +5,8 @@ import { ptBR } from "date-fns/locale";
 
 interface CardProps {
     title: string,
-    createdAt: Date,
-    updatedAt: Date,
+    createdAt: string,
+    updatedAt: string,
     techs: string[],
     languages: string[],
     description?: string

@@ -14,8 +14,8 @@ export function Projects() {
                             key={repo.repo}
                             title={repo.repo}
                             description={repo.description}
-                            createdAt={new Date(repo.createdAt)}
-                            updatedAt={new Date(repo.updatedAt)}
+                            createdAt={repo.createdAt}
+                            updatedAt={repo.updatedAt}
                             techs={repo.mainTechs}
                             languages={repo.languages}
                         />
