@@ -13,13 +13,20 @@ interface CardProps {
 }
 
 export function Card({ title, createdAt, updatedAt, techs, languages, description }: CardProps) {
-    const formattedCreatedAtDate = formatDate(createdAt, 'PPP', {
-        locale: ptBR
-    })
-    const formattedUpdatedAtDate = formatDistanceToNow(updatedAt, {
-        addSuffix: true,
-        locale: ptBR
-    })
+    let formattedCreatedAtDate = null;
+    let formattedUpdatedAtDate = null;
+    if (createdAt) {
+        formattedCreatedAtDate = formatDate(createdAt, 'PPP', {
+            locale: ptBR
+        })
+    }
+
+    if (updatedAt) {
+        formattedUpdatedAtDate = formatDistanceToNow(updatedAt, {
+            addSuffix: true,
+            locale: ptBR
+        })
+    }
 
     return (
         <CardContainer>
