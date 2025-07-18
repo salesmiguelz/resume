@@ -33,7 +33,8 @@ interface UserFetchData {
             repo: string,
             source: string,
             createdAt: string,
-            updatedAt: string
+            updatedAt: string,
+            url: string
         }
     ]
 }
@@ -66,7 +67,8 @@ export function UserContextProvider({ children }: UserContextProviderProps) {
                 repo: "",
                 source: "",
                 updatedAt: "",
-                createdAt: ""
+                createdAt: "",
+                url: ""
             }
         ]
     });

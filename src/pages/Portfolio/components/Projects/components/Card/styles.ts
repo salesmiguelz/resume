@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CardContainer = styled.div`
+export const CardContainer = styled.a`
   width: 24rem;
   max-height: 22rem;
   background-color: ${props => props.theme['base-post']};
@@ -9,6 +9,7 @@ export const CardContainer = styled.div`
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  text-decoration: none;
 
   &:hover {
     outline: 1px solid ${props => props.theme['blue']};

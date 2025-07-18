@@ -9,10 +9,11 @@ interface CardProps {
     updatedAt: string,
     techs: string[],
     languages: string[],
-    description?: string
+    url: string,
+    description?: string,
 }
 
-export function Card({ title, createdAt, updatedAt, techs, languages, description }: CardProps) {
+export function Card({ title, createdAt, updatedAt, techs, languages, description, url }: CardProps) {
     let formattedCreatedAtDate = null;
     let formattedUpdatedAtDate = null;
     if (createdAt) {
@@ -29,7 +30,7 @@ export function Card({ title, createdAt, updatedAt, techs, languages, descriptio
     }
 
     return (
-        <CardContainer>
+        <CardContainer href={url} target="_blank">
             <CardHeader>
                 <CardTitle>{title}</CardTitle>
                 <CardDate>{formattedCreatedAtDate}</CardDate>
