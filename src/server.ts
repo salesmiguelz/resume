@@ -32,7 +32,6 @@ fastify.get("/users/:username", async (request, reply) => {
         );
 
         const repos = reposRes.data;
-
         const repoResults = await Promise.all(
             repos.map(async (repo: any) => {
                 const { mainTechs, allDeps, source } = await extractTechnologies(username, repo.name);
@@ -42,6 +41,7 @@ fastify.get("/users/:username", async (request, reply) => {
                     description: repo.description,
                     createdAt: repo.created_at,
                     updatedAt: repo.updated_at,
+                    url: repo.html_url,
                     mainTechs,
                     allDeps,
                     languages,
