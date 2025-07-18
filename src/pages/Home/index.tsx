@@ -8,8 +8,10 @@ export function Home() {
     const [username, setUsername] = useState("");
     const { handleSetUserPortfolio } = useContext(UserContext)
 
-    function handleFetchUserData(username: string) {
-        handleSetUserPortfolio(username)
+    function handleSubmit(e: any) {
+        e.preventDefault();
+        const trimmedUsername = username.trim();
+        handleSetUserPortfolio(trimmedUsername)
     }
 
     return (
@@ -20,10 +22,10 @@ export function Home() {
             <DescriptionContainer>
                 <p>Você já tem o GitHub. Agora tem um portfólio. Grátis. Sim, é sério.</p>
             </DescriptionContainer>
-            <SearchFormContainer>
+            <SearchFormContainer onSubmit={handleSubmit}>
                 <span>@</span>
                 <SearchFormInput placeholder="Digite seu usário" value={username} onChange={(e) => setUsername(e.target.value)} />
-                <button onClick={() => handleFetchUserData(username)}>Criar</button>
+                <button type="submit">Criar</button>
             </SearchFormContainer>
 
             <ProjectDetails>

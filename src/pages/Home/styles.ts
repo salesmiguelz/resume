@@ -29,7 +29,7 @@ export const DescriptionContainer = styled.div`
     }
 `
 
-export const SearchFormContainer = styled.div`
+export const SearchFormContainer = styled.form`
     display: flex;
     align-items: center;
     justify-content: center;
