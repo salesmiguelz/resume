@@ -11,6 +11,7 @@ export function Header() {
 
     function handleReturnHome() {
         handleSetUserPortfolio("")
+        document.title = "resume"
         navigate("/")
     }
     return (

@@ -86,6 +86,7 @@ export function UserContextProvider({ children }: UserContextProviderProps) {
 
     function handleSetUserPortfolio(username: string) {
         setUsername(username);
+        document.title = `${username} - resume`
         navigate(`/${username}`)
     }
 
