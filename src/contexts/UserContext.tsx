@@ -1,14 +1,15 @@
 import axios from "axios";
 import { createContext, useEffect, useState, type ReactNode } from "react";
-import { useParams } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 interface UserContextProviderProps {
     children: ReactNode
 }
 
 interface UserContextType {
     username?: string,
-    userData: UserFetchData
+    userData: UserFetchData,
+    isLoading: boolean,
+    handleSetUserPortfolio: (user: string) => void
 }
 
 interface UserFetchData {
@@ -39,18 +40,11 @@ interface UserFetchData {
 
 export const UserContext = createContext({} as UserContextType);
 
-async function fetchUserData(username: string) {
-    try {
-        const response = await axios.get(`http://localhost:3000/users/${username}`);
 
-        return response?.data;
-    } catch (e) {
-        console.log("Houve um erro ao buscar as informações.")
-    }
-}
 
 export function UserContextProvider({ children }: UserContextProviderProps) {
-    const { username } = useParams();
+    const [username, setUsername] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
     const [userData, setUserData] = useState<UserFetchData>({
         user: {
             avatar_url: "",
@@ -77,14 +71,42 @@ export function UserContextProvider({ children }: UserContextProviderProps) {
         ]
     });
 
+    const navigate = useNavigate();
+
+    async function fetchUserData(username: string) {
+        try {
+            const response = await axios.get(`http://localhost:3000/users/${username}`);
+
+
+            return response?.data;
+        } catch (e) {
+            console.log("Houve um erro ao buscar as informações.")
+        }
+    }
+
+    function handleSetUserPortfolio(username: string) {
+        setUsername(username);
+        navigate(`/${username}`)
+    }
+
     useEffect(() => {
         if (username) {
-            fetchUserData(username).then(data => setUserData(data));
+            setIsLoading(true);
+            fetchUserData(username)
+                .then(data => {
+                    setUserData(data);
+                })
+                .catch(() => {
+
+                })
+                .finally(() => {
+                    setIsLoading(false);
+                });
         }
     }, [username])
 
     return (
-        <UserContext.Provider value={{ username, userData }}>
+        <UserContext.Provider value={{ username, userData, handleSetUserPortfolio, isLoading }}>
             {children}
         </UserContext.Provider>
     )

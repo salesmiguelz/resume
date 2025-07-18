@@ -5,13 +5,13 @@ import { Home } from "./pages/Home";
 
 export function Router() {
     return (
-        <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path="/users/:username" element={
-                <UserContextProvider >
+        <UserContextProvider >
+            <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path="/:username" element={
                     <Portfolio />
-                </UserContextProvider>
-            } />
-        </Routes>
+                } />
+            </Routes>
+        </UserContextProvider>
     )
 }

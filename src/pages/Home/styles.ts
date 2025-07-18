@@ -33,14 +33,24 @@ export const SearchFormContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
     margin-top: 1rem;
     width: 100%;
+
+    span{
+        margin-top: 1rem;
+        padding: 0.6rem;
+        border-radius: 0.25rem 0 0 0.25rem;
+        color: ${props => props.theme['white']};
+        font-size: ${props => props.theme['text-sm']};
+        background-color: ${props => props.theme['base-post']};
+    }
 
     input{
         width: 30rem;
         height: 2.5rem;
         padding: 0.6rem;
+        border-radius: 0 0.25rem 0.25rem 0;
+        margin-right: 0.5rem;
     }
 
     button{

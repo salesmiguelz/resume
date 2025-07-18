@@ -1,7 +1,17 @@
+import { useContext, useState } from "react";
 import { SearchFormInput } from "../Portfolio/components/SearchForm/styles";
 import { DescriptionContainer, HomeContainer, ProjectDetails, SearchFormContainer, TitleContainer } from "./styles";
+import { UserContext } from "../../contexts/UserContext";
+
 
 export function Home() {
+    const [username, setUsername] = useState("");
+    const { handleSetUserPortfolio } = useContext(UserContext)
+
+    function handleFetchUserData(username: string) {
+        handleSetUserPortfolio(username)
+    }
+
     return (
         <HomeContainer>
             <TitleContainer>
@@ -11,8 +21,9 @@ export function Home() {
                 <p>Você já tem o GitHub. Agora tem um portfólio. Grátis. Sim, é sério.</p>
             </DescriptionContainer>
             <SearchFormContainer>
-                <SearchFormInput placeholder="Digite seu usário" />
-                <button>Criar</button>
+                <span>@</span>
+                <SearchFormInput placeholder="Digite seu usário" value={username} onChange={(e) => setUsername(e.target.value)} />
+                <button onClick={() => handleFetchUserData(username)}>Criar</button>
             </SearchFormContainer>
 
             <ProjectDetails>
