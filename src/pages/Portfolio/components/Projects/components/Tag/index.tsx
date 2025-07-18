@@ -1,7 +1,7 @@
 import { TagColor, TagContainer, TagLabel } from "./styles";
 
 interface TagProps {
-    variant: 'blue' | 'red',
+    variant: 'blue' | 'green',
     name: string
 }
 

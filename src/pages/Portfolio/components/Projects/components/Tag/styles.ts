@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 interface TagColorProps {
-    variant: 'blue' | 'red'
+    variant: 'blue' | 'green'
 }
+
 
 export const TagContainer = styled.div`
     margin-top: 1rem;
@@ -18,7 +19,12 @@ export const TagContainer = styled.div`
 export const TagColor = styled.span<TagColorProps>`
     height: 1rem;
     width: 1rem;
-    background-color: ${props => props.variant === 'blue' ? props.theme['blue'] : 'red'};
+    background-color: ${props =>
+        props.variant === 'blue'
+            ? props.theme['blue']
+            : props.variant === 'green'
+                ? '#1ABC9C'
+                : 'transparent'};
     border-radius: 50%;
 `
 

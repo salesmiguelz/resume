@@ -45,7 +45,7 @@ export function Card({ title, createdAt, updatedAt, techs, languages, descriptio
             <CardTags>
                 {
                     languages.slice(0, 3).map(language => (
-                        <Tag key={language} name={language} variant="red" />
+                        <Tag key={language} name={language} variant="green" />
                     ))
                 }
             </CardTags>
