@@ -3,17 +3,10 @@ import { HeaderContainer, HeaderLogoContainer, HeaderReturnContainer, HeaderTitl
 import { Profile } from "./components/Profile";
 import { UserContext } from "../../../../contexts/UserContext";
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
 
 export function Header() {
-    const { userData, handleSetUserPortfolio } = useContext(UserContext)
-    const navigate = useNavigate();
+    const { userData, handleReturnHome } = useContext(UserContext)
 
-    function handleReturnHome() {
-        handleSetUserPortfolio("")
-        document.title = "resume"
-        navigate("/")
-    }
     return (
         <HeaderContainer>
             <HeaderReturnContainer onClick={handleReturnHome}>

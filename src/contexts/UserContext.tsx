@@ -9,7 +9,10 @@ interface UserContextType {
     username?: string,
     userData: UserFetchData,
     isLoading: boolean,
-    handleSetUserPortfolio: (user: string) => void
+    errorMessage: string,
+    handleSetUserPortfolio: (user: string) => void,
+    handleSetErrorMessage: (ErrorMessage: string) => void,
+    handleReturnHome: () => void
 }
 
 interface UserFetchData {
@@ -72,17 +75,23 @@ export function UserContextProvider({ children }: UserContextProviderProps) {
             }
         ]
     });
-
+    const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
 
     async function fetchUserData(username: string) {
         try {
             const response = await axios.get(`http://localhost:3000/users/${username}`);
-
-
-            return response?.data;
+            return {
+                statusCode: response.status,
+                data: response.data
+            };
         } catch (e) {
-            console.log("Houve um erro ao buscar as informações.")
+            if (axios.isAxiosError(e) && e.response?.status === 404) {
+                setErrorMessage("Não encontramos seu usuário do GitHub. Por favor, tente novamente.")
+            } else {
+                setErrorMessage("Houve um erro na geração do seu portfolio. Por favor, tente novamente.")
+            }
+            return null
         }
     }
 
@@ -92,24 +101,33 @@ export function UserContextProvider({ children }: UserContextProviderProps) {
         navigate(`/${username}`)
     }
 
+    function handleSetErrorMessage(ErrorMessage: string) {
+        setErrorMessage(ErrorMessage);
+    }
+
+    function handleReturnHome() {
+        handleSetUserPortfolio("")
+        navigate("/")
+        handleSetErrorMessage("")
+        document.title = "resume"
+    }
+
     useEffect(() => {
         if (username) {
             setIsLoading(true);
+            setErrorMessage("");
             fetchUserData(username)
-                .then(data => {
-                    setUserData(data);
-                })
-                .catch(() => {
-
-                })
-                .finally(() => {
+                .then(response => {
+                    if (response) {
+                        setUserData(response.data);
+                    }
                     setIsLoading(false);
-                });
+                })
         }
     }, [username])
 
     return (
-        <UserContext.Provider value={{ username, userData, handleSetUserPortfolio, isLoading }}>
+        <UserContext.Provider value={{ username, userData, isLoading, errorMessage, handleSetUserPortfolio, handleSetErrorMessage, handleReturnHome }}>
             {children}
         </UserContext.Provider>
     )
