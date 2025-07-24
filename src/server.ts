@@ -23,7 +23,7 @@ fastify.get("/users/:username", async (request, reply) => {
         const user = userRes.data;
 
         const reposRes = await axios.get(
-            `https://api.github.com/users/${username}/repos?per_page=10&sort=updated`,
+            `https://api.github.com/users/${username}/repos?per_page=16&sort=updated`,
             {
                 headers: {
                     Authorization: `Bearer ${process.env.GITHUB_TOKEN}`
@@ -31,7 +31,8 @@ fastify.get("/users/:username", async (request, reply) => {
             }
         );
 
-        const repos = reposRes.data;
+        const repos = reposRes.data.filter((repo: any) => repo.name.toLowerCase() !== username.toLowerCase())
+            .slice(0, 15);;
         const repoResults = await Promise.all(
             repos.map(async (repo: any) => {
                 const { mainTechs, allDeps, source } = await extractTechnologies(username, repo.name);
@@ -65,8 +66,7 @@ fastify.get("/users/:username", async (request, reply) => {
             repos: repoResults
         };
     } catch (error: any) {
-        console.error("Erro geral:", error.message);
-        return reply.status(500).send({ error: "Erro ao buscar dados do GitHub." });
+        return reply.status(error.status).send({ error: "Erro ao buscar dados do GitHub." });
     }
 });
 
