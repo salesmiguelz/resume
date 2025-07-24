@@ -84,10 +84,11 @@ export function UserContextProvider({ children }: UserContextProviderProps) {
     const [techUsage, setTechUsage] = useState<TechPercentage[]>([]);
 
     const navigate = useNavigate();
+    const API_BASE_URL = process.env.REACT_APP_API_URL;
 
     async function fetchUserData(username: string) {
         try {
-            const response = await axios.get(`http://localhost:3000/users/${username}`);
+            const response = await axios.get(`${API_BASE_URL}/${username}`);
             return {
                 statusCode: response.status,
                 data: response.data,
