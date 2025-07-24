@@ -8,7 +8,7 @@ export function SearchForm() {
         <SearchFormContainer>
             <SearchFormText>
                 <SearchFormTitle>Projetos</SearchFormTitle>
-                <SearchFormData>{userData.repos.length} projetos</SearchFormData>
+                <SearchFormData>Últimos {userData.repos.length} projetos</SearchFormData>
             </SearchFormText>
             <SearchFormInput placeholder="Busque um projeto" />
         </SearchFormContainer>

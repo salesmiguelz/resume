@@ -1,13 +1,17 @@
 import { useContext } from "react";
-import { ProjectsContainer } from "./styles";
+import { RepositoriesContainer, RepositoriesData, RepositoriesText, RepositoriesTitle } from "./styles";
 import { UserContext } from "../../../../contexts/UserContext";
 import { Card } from "./components/Card";
 
-export function Projects() {
+export function Repositories() {
     const { userData } = useContext(UserContext)
     return (
         <>
-            <ProjectsContainer>
+            <RepositoriesText>
+                <RepositoriesTitle>Repositórios</RepositoriesTitle>
+                <RepositoriesData>Últimos {userData.repos.length}</RepositoriesData>
+            </RepositoriesText>
+            <RepositoriesContainer>
                 {
                     Array.isArray(userData.repos) ? (
                         userData.repos.map(repo => (
@@ -25,7 +29,7 @@ export function Projects() {
                     ) : null
                 }
 
-            </ProjectsContainer>
+            </RepositoriesContainer>
         </>
     )
 }

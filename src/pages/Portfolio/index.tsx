@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import { Header } from "./components/Header";
-import { Projects } from "./components/Projects";
-import { SearchForm } from "./components/SearchForm";
+import { Repositories } from "./components/Repositories";
 import { ErrorMessage, ErrorMessageContainer, PortfolioContainer } from "./styles";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../../contexts/UserContext";
@@ -40,8 +39,8 @@ export function Portfolio() {
                         <>
                             <Header />
                             <StackUsed />
-                            <SearchForm />
-                            <Projects />
+                            {/* <SearchForm /> */}
+                            <Repositories />
                         </>
                     ) : <Spinner />
             }
