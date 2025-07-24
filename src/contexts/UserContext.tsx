@@ -1,50 +1,54 @@
 import axios from "axios";
 import { createContext, useEffect, useState, type ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
+
 interface UserContextProviderProps {
-    children: ReactNode
+    children: ReactNode;
+}
+
+interface TechPercentage {
+    name: string;
+    percentage: number;
 }
 
 interface UserContextType {
-    username?: string,
-    userData: UserFetchData,
-    isLoading: boolean,
-    errorMessage: string,
-    handleSetUserPortfolio: (user: string) => void,
-    handleSetErrorMessage: (ErrorMessage: string) => void,
-    handleReturnHome: () => void
+    username?: string;
+    userData: UserFetchData;
+    isLoading: boolean;
+    errorMessage: string;
+    languageUsage: TechPercentage[];
+    techUsage: TechPercentage[];
+    handleSetUserPortfolio: (user: string) => void;
+    handleSetErrorMessage: (ErrorMessage: string) => void;
+    handleReturnHome: () => void;
 }
 
 interface UserFetchData {
     user: {
-        avatar_url: string,
-        bio: string,
-        company: string,
-        followers: string,
-        following: string,
-        html_url: string,
-        login: string,
-        name: string,
-        public_repo: string
-    },
-    repos: [
-        {
-            allDeps: string[],
-            description?: string,
-            languages: string[],
-            mainTechs: string[],
-            repo: string,
-            source: string,
-            createdAt: string,
-            updatedAt: string,
-            url: string
-        }
-    ]
+        avatar_url: string;
+        bio: string;
+        company: string;
+        followers: string;
+        following: string;
+        html_url: string;
+        login: string;
+        name: string;
+        public_repo: string;
+    };
+    repos: {
+        allDeps: string[];
+        description?: string;
+        languages: string[];
+        mainTechs: string[];
+        repo: string;
+        source: string;
+        createdAt: string;
+        updatedAt: string;
+        url: string;
+    }[];
 }
 
 export const UserContext = createContext({} as UserContextType);
-
-
 
 export function UserContextProvider({ children }: UserContextProviderProps) {
     const [username, setUsername] = useState("");
@@ -59,7 +63,7 @@ export function UserContextProvider({ children }: UserContextProviderProps) {
             html_url: "",
             login: "",
             name: "",
-            public_repo: ""
+            public_repo: "",
         },
         repos: [
             {
@@ -71,11 +75,14 @@ export function UserContextProvider({ children }: UserContextProviderProps) {
                 source: "",
                 updatedAt: "",
                 createdAt: "",
-                url: ""
-            }
-        ]
+                url: "",
+            },
+        ],
     });
-    const [errorMessage, setErrorMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState("");
+    const [languageUsage, setLanguageUsage] = useState<TechPercentage[]>([]);
+    const [techUsage, setTechUsage] = useState<TechPercentage[]>([]);
+
     const navigate = useNavigate();
 
     async function fetchUserData(username: string) {
@@ -83,22 +90,22 @@ export function UserContextProvider({ children }: UserContextProviderProps) {
             const response = await axios.get(`http://localhost:3000/users/${username}`);
             return {
                 statusCode: response.status,
-                data: response.data
+                data: response.data,
             };
         } catch (e) {
             if (axios.isAxiosError(e) && e.response?.status === 404) {
-                setErrorMessage("Não encontramos seu usuário do GitHub. Por favor, tente novamente.")
+                setErrorMessage("Não encontramos seu usuário do GitHub. Por favor, tente novamente.");
             } else {
-                setErrorMessage("Houve um erro na geração do seu portfolio. Por favor, tente novamente.")
+                setErrorMessage("Houve um erro na geração do seu portfólio. Por favor, tente novamente.");
             }
-            return null
+            return null;
         }
     }
 
     function handleSetUserPortfolio(username: string) {
         setUsername(username);
-        document.title = `${username} - resume`
-        navigate(`/${username}`)
+        document.title = `${username} - resume`;
+        navigate(`/${username}`);
     }
 
     function handleSetErrorMessage(ErrorMessage: string) {
@@ -106,29 +113,63 @@ export function UserContextProvider({ children }: UserContextProviderProps) {
     }
 
     function handleReturnHome() {
-        handleSetUserPortfolio("")
-        navigate("/")
-        handleSetErrorMessage("")
-        document.title = "resume"
+        handleSetUserPortfolio("");
+        navigate("/");
+        handleSetErrorMessage("");
+        document.title = "resume";
+    }
+
+    function calculatePercentages(items: string[]): TechPercentage[] {
+        const countMap = new Map<string, number>();
+
+        items.forEach((item) => {
+            countMap.set(item, (countMap.get(item) || 0) + 1);
+        });
+
+        const total = items.length;
+
+        return Array.from(countMap.entries()).map(([name, count]) => ({
+            name,
+            percentage: (count / total) * 100,
+        }));
     }
 
     useEffect(() => {
         if (username) {
             setIsLoading(true);
             setErrorMessage("");
-            fetchUserData(username)
-                .then(response => {
-                    if (response) {
-                        setUserData(response.data);
-                    }
-                    setIsLoading(false);
-                })
+            fetchUserData(username).then((response) => {
+                if (response) {
+                    const data = response.data;
+                    setUserData(data);
+
+                    const allLanguages = data.repos.flatMap((repo: any) => repo.languages);
+                    const allTechs = data.repos.flatMap((repo: any) => repo.mainTechs);
+
+                    setLanguageUsage(calculatePercentages(allLanguages));
+                    setTechUsage(calculatePercentages(allTechs));
+                }
+
+                setIsLoading(false);
+            });
         }
-    }, [username])
+    }, [username]);
 
     return (
-        <UserContext.Provider value={{ username, userData, isLoading, errorMessage, handleSetUserPortfolio, handleSetErrorMessage, handleReturnHome }}>
+        <UserContext.Provider
+            value={{
+                username,
+                userData,
+                isLoading,
+                errorMessage,
+                languageUsage,
+                techUsage,
+                handleSetUserPortfolio,
+                handleSetErrorMessage,
+                handleReturnHome,
+            }}
+        >
             {children}
         </UserContext.Provider>
-    )
+    );
 }

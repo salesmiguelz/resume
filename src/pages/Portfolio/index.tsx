@@ -8,6 +8,7 @@ import { UserContext } from "../../contexts/UserContext";
 import { Spinner } from "./components/Spinner";
 import { HeaderReturnContainer } from "./components/Header/styles";
 import { ArrowLeft } from "phosphor-react";
+import { StackUsed } from "../../components/StackUsed";
 
 export function Portfolio() {
     const { username: paramUsername } = useParams();
@@ -38,6 +39,7 @@ export function Portfolio() {
                     !isLoading ? (
                         <>
                             <Header />
+                            <StackUsed />
                             <SearchForm />
                             <Projects />
                         </>

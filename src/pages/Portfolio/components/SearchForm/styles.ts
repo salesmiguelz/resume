@@ -7,7 +7,7 @@ export const SearchFormContainer = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin: 12rem auto 4rem;
+    margin: 4rem auto 4rem;
 
     @media (max-width: 768px) {
         margin: 30rem auto 4rem;
