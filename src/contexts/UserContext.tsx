@@ -88,7 +88,7 @@ export function UserContextProvider({ children }: UserContextProviderProps) {
 
     async function fetchUserData(username: string) {
         try {
-            const response = await axios.get(`${API_BASE_URL}/${username}`);
+            const response = await axios.get(`${API_BASE_URL}/users/${username}`);
             return {
                 statusCode: response.status,
                 data: response.data,
