@@ -7,6 +7,8 @@ import { extractTechnologies } from "./utils/extractTechnologies";
 
 const fastify = Fastify();
 
+const PORT = Number(process.env.PORT) || 3000;
+
 fastify.register(cors, {
     origin: true
 });
@@ -70,6 +72,6 @@ fastify.get("/users/:username", async (request, reply) => {
     }
 });
 
-fastify.listen({ port: 3000 }).then(() => {
-    console.log("🚀 Server running at http://localhost:3000");
+fastify.listen({ port: PORT, host: '0.0.0.0' }).then(() => {
+    console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
