@@ -41,7 +41,7 @@ export function TechUsageBar({ data, isLanguage = true }: TechUsageBarProps) {
                 {normalized.map((tech, i) => (
                     <UsageSegment
                         key={tech.name}
-                        widthPercent={tech.percentage}
+                        $widthPercent={tech.percentage}
                         color={getColor(tech.name, i)}
                         title={`${tech.name}: ${tech.percentage.toFixed(1)}%`}
                     />

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface UsageSegmentProps {
-  widthPercent: number;
+  $widthPercent: number;
   color: string;
 }
 
@@ -56,7 +56,7 @@ export const UsageBar = styled.div`
 
 
 export const UsageSegment = styled.div<UsageSegmentProps>`
-  width: ${({ widthPercent }) => widthPercent}%;
+  width: ${({ $widthPercent }) => $widthPercent}%;
   background-color: ${({ color }) => color};
   transition: width 0.3s ease;
 `;

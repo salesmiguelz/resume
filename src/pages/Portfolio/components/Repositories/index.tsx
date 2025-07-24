@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { RepositoriesContainer, RepositoriesData, RepositoriesText, RepositoriesTitle } from "./styles";
 import { UserContext } from "../../../../contexts/UserContext";
 import { Card } from "./components/Card";
+import { Footer } from "../Footer";
 
 export function Repositories() {
     const { userData } = useContext(UserContext)
@@ -28,8 +29,8 @@ export function Repositories() {
                         ))
                     ) : null
                 }
-
             </RepositoriesContainer>
+            <Footer />
         </>
     )
 }

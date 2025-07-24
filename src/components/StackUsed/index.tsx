@@ -12,7 +12,7 @@ export function StackUsed() {
         <TechUsageBar data={languageUsage} isLanguage={true} />
       </LanguagesUsedContainer>
       <TechnologiesUsedContainer>
-        <TechnologiesTitle>Technologias</TechnologiesTitle>
+        <TechnologiesTitle>Tecnologias</TechnologiesTitle>
         <TechUsageBar data={techUsage} isLanguage={false} />
       </TechnologiesUsedContainer>
     </StackUsedContainer>

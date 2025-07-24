@@ -39,7 +39,6 @@ export function Portfolio() {
                         <>
                             <Header />
                             <StackUsed />
-                            {/* <SearchForm /> */}
                             <Repositories />
                         </>
                     ) : <Spinner />

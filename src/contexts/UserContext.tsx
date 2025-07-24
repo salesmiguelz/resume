@@ -128,10 +128,12 @@ export function UserContextProvider({ children }: UserContextProviderProps) {
 
         const total = items.length;
 
-        return Array.from(countMap.entries()).map(([name, count]) => ({
-            name,
-            percentage: (count / total) * 100,
-        }));
+        return Array.from(countMap.entries())
+            .map(([name, count]) => ({
+                name,
+                percentage: (count / total) * 100,
+            }))
+            .sort((a, b) => b.percentage - a.percentage)
     }
 
     useEffect(() => {

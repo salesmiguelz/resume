@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 interface TagColorProps {
-    variant: 'blue' | 'green'
+    $variant: 'blue' | 'green'
 }
 
 
 export const TagContainer = styled.div`
     margin-top: 1rem;
     display: flex;
+    align-items: center;
     background-color: red;
     gap: 0.5rem;
     background-color: ${props => props.theme['base-input']};
@@ -20,9 +21,9 @@ export const TagColor = styled.span<TagColorProps>`
     height: 1rem;
     width: 1rem;
     background-color: ${props =>
-        props.variant === 'blue'
+        props.$variant === 'blue'
             ? props.theme['blue']
-            : props.variant === 'green'
+            : props.$variant === 'green'
                 ? '#1ABC9C'
                 : 'transparent'};
     border-radius: 50%;

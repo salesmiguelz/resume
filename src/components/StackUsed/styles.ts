@@ -10,6 +10,10 @@ export const LanguagesUsedContainer = styled.div`
     max-width: 90vw;
     width: 50rem;
     margin: 9rem auto 0;
+
+    @media (max-width: 768px) {
+      margin: 28rem auto 0;;
+    }
 `
 
 export const TechnologiesUsedContainer = styled.div`

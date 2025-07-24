@@ -8,7 +8,7 @@ interface TagProps {
 export function Tag({ variant, name }: TagProps) {
     return (
         <TagContainer>
-            <TagColor variant={variant} />
+            <TagColor $variant={variant} />
             <TagLabel>{name}</TagLabel>
         </TagContainer>
     )
