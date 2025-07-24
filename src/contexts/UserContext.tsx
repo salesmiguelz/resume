@@ -84,7 +84,7 @@ export function UserContextProvider({ children }: UserContextProviderProps) {
     const [techUsage, setTechUsage] = useState<TechPercentage[]>([]);
 
     const navigate = useNavigate();
-    const API_BASE_URL = process.env.REACT_APP_API_URL;
+    const API_BASE_URL = process.env.API_BASE_URL;
 
     async function fetchUserData(username: string) {
         try {
