@@ -16,7 +16,7 @@ export const CardContainer = styled.a`
     outline: 1px solid ${props => props.theme['blue']};
   }
     @media (max-width: 768px) {
-      max-width: 80vw;
+      max-width: 90vw;
     }
 
 `
