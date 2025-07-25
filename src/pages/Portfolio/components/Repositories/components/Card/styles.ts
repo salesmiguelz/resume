@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.a`
-  width: 24rem;
+  width: 100%;
+  max-width: 24rem;
   max-height: 22rem;
   background-color: ${props => props.theme['base-post']};
   border-radius: 0.625rem;
