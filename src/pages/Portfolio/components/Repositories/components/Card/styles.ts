@@ -15,6 +15,9 @@ export const CardContainer = styled.a`
   &:hover {
     outline: 1px solid ${props => props.theme['blue']};
   }
+    @media (max-width: 768px) {
+      max-width: 80vw;
+    }
 
 `
 
@@ -29,7 +32,8 @@ export const CardTags = styled.div`
     align-items: start;
     justify-content: start;
     flex-direction: row;
-    gap: 0.625rem;
+    column-gap: 0.425rem;
+    flex-wrap: wrap;
 `
 
 export const CardTitle = styled.h2`
