@@ -1,18 +1,22 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useRef } from "react";
 import { SearchFormInput } from "../Portfolio/components/SearchForm/styles";
 import { DescriptionContainer, HomeContainer, SearchFormContainer, TitleContainer } from "./styles";
 import { UserContext } from "../../contexts/UserContext";
 import { Footer } from "../Portfolio/components/Footer";
 
-
 export function Home() {
     const [username, setUsername] = useState("");
-    const { handleSetUserPortfolio } = useContext(UserContext)
+    const { handleSetUserPortfolio } = useContext(UserContext);
+    const inputRef = useRef<HTMLInputElement>(null);
 
     function handleSubmit(e: any) {
         e.preventDefault();
         const trimmedUsername = username.trim();
-        handleSetUserPortfolio(trimmedUsername)
+        handleSetUserPortfolio(trimmedUsername);
+    }
+
+    function handleFocus() {
+        inputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
     }
 
     return (
@@ -26,7 +30,13 @@ export function Home() {
                 </DescriptionContainer>
                 <SearchFormContainer onSubmit={handleSubmit}>
                     <span>@</span>
-                    <SearchFormInput placeholder="Digite seu usário" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <SearchFormInput
+                        ref={inputRef}
+                        placeholder="Digite seu usuário"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        onFocus={handleFocus}
+                    />
                     <button type="submit">Criar</button>
                 </SearchFormContainer>
                 <Footer />

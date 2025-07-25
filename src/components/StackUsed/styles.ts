@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const StackUsedContainer = styled.div``
+export const StackUsedContainer = styled.div`
+    pointer-events: none;
+`
 
 export const LanguagesUsedContainer = styled.div`
     display: flex;
